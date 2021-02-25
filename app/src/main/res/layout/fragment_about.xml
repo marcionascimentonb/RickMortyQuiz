@@ -14,6 +14,7 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="118dp"
+            android:scaleType="centerInside"
             android:src="@drawable/nav_header"
             app:layout_constraintBottom_toTopOf="@+id/scrollable_text"
             app:layout_constraintEnd_toEndOf="parent"

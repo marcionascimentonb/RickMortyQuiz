@@ -79,7 +79,7 @@ class GameViewModel : ViewModel() {
         _checkFalse.value = questionBank[questionIndex].attempted && questionBank[questionIndex].answered == false
         _checkTrue.value = questionBank[questionIndex].attempted && questionBank[questionIndex].answered == true
 
-        _scoreString.value = "Your Score: ${questionBank.count {it.attempted}}/${questionBank.size}"
+        _scoreString.value = "Your Score: ${questionBank.count {it.answer == it.answered && it.attempted}}/${questionBank.size}"
 
         if(questionAttempted() == questionBank.size){
             onGameFinish()

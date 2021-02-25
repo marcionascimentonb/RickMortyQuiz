@@ -10,11 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.rickandmorty.R
 import com.example.android.rickandmorty.databinding.FragmentTitleBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TitleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class TitleFragment : Fragment() {
 
 

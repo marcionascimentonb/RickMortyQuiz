@@ -18,5 +18,18 @@
         android:id="@+id/gameFragment"
         android:name="com.example.android.rickandmorty.screens.game.GameFragment"
         android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        tools:layout="@layout/fragment_game" >
+        <action
+            android:id="@+id/action_gameFragment_to_scoreFragment"
+            app:destination="@id/scoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:name="com.example.android.rickandmorty.screens.score.ScoreFragment"
+        android:label="fragment_score"
+        tools:layout="@layout/fragment_score" >
+        <argument
+            android:name="scoreMsg"
+            app:argType="string" />
+    </fragment>
 </navigation>
