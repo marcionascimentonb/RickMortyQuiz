@@ -49,6 +49,28 @@
             </LinearLayout>
         </ScrollView>
 
+        <ImageView
+            android:id="@+id/correct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right_24"
+            android:visibility="@{gameViewModel.attempted &amp;&amp; gameViewModel.isCorrect().booleanValue() == true}"
+            app:layout_constraintTop_toEndOf="@id/scrollable"
+            app:layout_constraintStart_toEndOf="@id/trueRdBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/incorrect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wrong_24"
+            android:visibility="@{gameViewModel.attempted &amp;&amp; gameViewModel.isCorrect().booleanValue() == false}"
+            app:layout_constraintTop_toEndOf="@id/scrollable"
+            app:layout_constraintStart_toEndOf="@id/trueRdBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
 
         <ImageButton
             android:id="@+id/prevButton"
