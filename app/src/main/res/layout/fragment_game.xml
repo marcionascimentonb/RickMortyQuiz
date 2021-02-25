@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="gameViewModel"
             type="com.example.android.rickandmorty.screens.game.GameViewModel" />
@@ -18,20 +19,44 @@
         tools:context=".screens.game.GameFragment">
 
         <ImageView
+            android:id="@+id/correct"
+            android:visibility="@{gameViewModel.attempted &amp;&amp; gameViewModel.isCorrect().booleanValue() == true ? View.VISIBLE : View.GONE }"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right_24"
+            app:layout_constraintStart_toEndOf="@id/trueRdBtn"
+            app:layout_constraintTop_toTopOf="@id/trueRdBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        >
+        <ImageView
+            android:id="@+id/incorrect"
+            android:visibility="@{gameViewModel.attempted &amp;&amp; gameViewModel.isCorrect().booleanValue() == false ? View.VISIBLE : View.GONE }"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wrong_24"
+            app:layout_constraintStart_toEndOf="@id/trueRdBtn"
+            app:layout_constraintTop_toTopOf="@id/trueRdBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
+        <ImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="118dp"
             android:src="@drawable/nav_header"
-            app:layout_constraintBottom_toTopOf="@+id/scrollable"
+            app:layout_constraintBottom_toTopOf="@+id/scrollableText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
-            android:id="@+id/scrollable"
+            android:id="@+id/scrollableText"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/trueRdBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageView"
@@ -49,41 +74,6 @@
             </LinearLayout>
         </ScrollView>
 
-        <ImageView
-            android:id="@+id/correct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/right_24"
-            android:visibility="@{gameViewModel.attempted &amp;&amp; gameViewModel.isCorrect().booleanValue() == true}"
-            app:layout_constraintTop_toEndOf="@id/scrollable"
-            app:layout_constraintStart_toEndOf="@id/trueRdBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
-
-        <ImageView
-            android:id="@+id/incorrect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/wrong_24"
-            android:visibility="@{gameViewModel.attempted &amp;&amp; gameViewModel.isCorrect().booleanValue() == false}"
-            app:layout_constraintTop_toEndOf="@id/scrollable"
-            app:layout_constraintStart_toEndOf="@id/trueRdBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
-
-
-        <ImageButton
-            android:id="@+id/prevButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:onClick="@{() -> gameViewModel.prev()}"
-            android:src="@drawable/ic_baseline_navigate_before_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/trueRdBtn"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <RadioButton
             android:id="@+id/trueRdBtn"
             android:layout_width="0dp"
@@ -95,9 +85,9 @@
             android:onClick="@{()-> gameViewModel.onSelected(true)}"
             android:text="TRUE"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/falseRdBtn"
-            app:layout_constraintStart_toEndOf="@id/prevButton" />
+            app:layout_constraintTop_toBottomOf="@id/scrollableText"
+            app:layout_constraintBottom_toTopOf="@id/falseRdBtn"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <RadioButton
             android:id="@+id/falseRdBtn"
@@ -110,20 +100,35 @@
             android:onClick="@{()-> gameViewModel.onSelected(false)}"
             android:text="FALSE"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/nextButton"
-            app:layout_constraintStart_toEndOf="@id/trueRdBtn" />
+            app:layout_constraintTop_toBottomOf="@id/trueRdBtn"
+            app:layout_constraintBottom_toTopOf="@id/optionsBar"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageButton
-            android:id="@+id/nextButton"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:id="@+id/optionsBar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:onClick="@{() -> gameViewModel.next()}"
-            android:src="@drawable/ic_baseline_navigate_next_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/falseRdBtn" />
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageButton
+                android:id="@+id/prevButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:onClick="@{() -> gameViewModel.prev()}"
+                android:src="@drawable/ic_baseline_navigate_before_24" />
+
+            <ImageButton
+                android:id="@+id/nextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:onClick="@{() -> gameViewModel.next()}"
+                android:src="@drawable/ic_baseline_navigate_next_24" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -79,7 +79,7 @@ class GameViewModel : ViewModel() {
         _checkFalse.value = questionBank[questionIndex].attempted && questionBank[questionIndex].answered == false
         _checkTrue.value = questionBank[questionIndex].attempted && questionBank[questionIndex].answered == true
 
-        _scoreString.value = "Your Score: ${questionBank.count {it.attempted}}"
+        _scoreString.value = "Your Score: ${questionBank.count {it.attempted}}/${questionBank.size}"
 
         if(questionAttempted() == questionBank.size){
             onGameFinish()
@@ -108,6 +108,7 @@ class GameViewModel : ViewModel() {
         }
         _attempted.value = true
         questionBank[questionIndex].attempted = true
+        updateQuestion()
     }
 
     private fun goNextQuestion(direction:String = "asc"){
