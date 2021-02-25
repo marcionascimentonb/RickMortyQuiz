@@ -48,6 +48,10 @@ class GameViewModel : ViewModel() {
         get() = _eventGameFinish
 
 
+    init{
+        newGame()
+    }
+
     fun onGameFinish() {
         _eventGameFinish.value = true
     }
@@ -70,10 +74,10 @@ class GameViewModel : ViewModel() {
 
         _questionId.value = questionBank[questionIndex].questionID
         _attempted.value = questionBank[questionIndex].attempted
-        //_isCorrect.value = questionBank[questionIndex].answer == questionBank[questionIndex].answered
+        _isCorrect.value = questionBank[questionIndex].answer == questionBank[questionIndex].answered
 
-        _checkFalse.value = questionBank[questionIndex].attempted && _checkFalse.value == true
-        _checkTrue.value = questionBank[questionIndex].attempted && _checkTrue.value == true
+        _checkFalse.value = questionBank[questionIndex].attempted && questionBank[questionIndex].answered == false
+        _checkTrue.value = questionBank[questionIndex].attempted && questionBank[questionIndex].answered == true
 
         _scoreString.value = "Your Score: ${questionBank.count {it.attempted}}"
 
@@ -83,12 +87,12 @@ class GameViewModel : ViewModel() {
     }
 
     fun prev(){
-        goNextQuestion()
+        goNextQuestion("desc")
         updateQuestion()
     }
 
     fun next(){
-        goNextQuestion("desc")
+        goNextQuestion()
         updateQuestion()
     }
 
@@ -96,25 +100,26 @@ class GameViewModel : ViewModel() {
         when (choice){
             true -> {
               _checkTrue.value = true
+                questionBank[questionIndex].answered = true
             } else->{
                _checkFalse.value = true
+            questionBank[questionIndex].answered = false
              }
         }
         _attempted.value = true
         questionBank[questionIndex].attempted = true
-
     }
 
     private fun goNextQuestion(direction:String = "asc"){
-        when (questionIndex) {
-            0 -> questionIndex = questionBank.count() - 1
-            questionBank.count()-1 -> questionIndex = 0
-            else -> {
+        if (questionIndex == 0 && direction.equals("desc")) {
+              questionIndex = questionBank.count() - 1
+        }else if (questionIndex == questionBank.count()-1 && direction.equals("asc")){
+             questionIndex = 0
+        }else {
                 if(direction.equals("desc"))
                     questionIndex--
                 else
                     questionIndex++
-            }
         }
     }
 
