@@ -58,4 +58,8 @@ dependencies {
     //ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
+    //navigation drawer
+    implementation "com.google.android.material:material:$version"
+
+
 }
