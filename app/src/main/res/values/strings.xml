@@ -114,5 +114,24 @@
     <string name="question_19">Rick\'s Hivemind Ex-Lover Is Called Purity?</string>
     <string name="question_20">The Conjoint Twin That Simultaneously Host The News &amp;v A Cooking Show Are Calle Michael &amp; Pichael?</string>
     <string name="about">About</string>
+    <string name="about_text">"The Rick and Morty quiz will help remind you of important concepts you have learned by watching Rick and Morty.\n\n"
+        "Consider modifying the question and graphics to make this game your own!"
+    </string>
+    <string name="rule_text">
+        "Select the answer from the options given."
+        "Once you answer a question you can\'t change your answer."
+        "Once have answered all the questions you will go to a page"
+
+        "that tells you your score.\n\n"
+
+        "You can return to the title screen using up or back from within"
+        "the game screen, and this will also end your game."
+    </string>
     <string name="rules">Rules</string>
+    <string name="about_labe">About Rick and Morty</string>
+    <string name="rules_label">The Rules</string>
+    <string name="game_label">Quiz Time</string>
+    <string name="score_label">Game Over</string>
+    <string name="false_text">FALSE</string>
+    <string name="true_text">TRUE</string>
 </resources>

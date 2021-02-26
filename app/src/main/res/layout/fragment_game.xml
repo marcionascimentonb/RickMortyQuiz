@@ -44,7 +44,7 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
             android:src="@drawable/rnm02"
             app:layout_constraintBottom_toTopOf="@+id/scrollableText"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +69,7 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="24sp"
                     android:layout_margin="15dp"
                     android:text="@{context.getText(gameViewModel.questionId)}" />
             </LinearLayout>
@@ -78,12 +79,13 @@
             android:id="@+id/trueRdBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:checked="@{gameViewModel.checkTrue}"
             android:enabled="@{!gameViewModel.attempted}"
             android:onClick="@{()-> gameViewModel.onSelected(true)}"
-            android:text="TRUE"
+            android:text="@string/true_text"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/scrollableText"
             app:layout_constraintBottom_toTopOf="@id/falseRdBtn"
@@ -93,12 +95,13 @@
             android:id="@+id/falseRdBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:checked="@{gameViewModel.checkFalse}"
             android:enabled="@{!gameViewModel.attempted}"
             android:onClick="@{()-> gameViewModel.onSelected(false)}"
-            android:text="FALSE"
+            android:text="@string/false_text"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/trueRdBtn"
             app:layout_constraintBottom_toTopOf="@id/optionsBar"
@@ -110,6 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginStart="15dp"
             app:layout_constraintBottom_toTopOf="@id/txtScore">
 
             <ImageButton
@@ -141,7 +145,7 @@
             android:id="@+id/txtScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="15dp"
             android:textAlignment="center"
             android:text="@{gameViewModel.scoreString}"
             app:layout_constraintBottom_toBottomOf="parent"/>

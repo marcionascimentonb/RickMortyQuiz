@@ -14,6 +14,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/rnm03"
             app:layout_constraintBottom_toTopOf="@+id/scrollable_text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,12 +35,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
                 <TextView
                     android:id="@+id/textView"
+                    android:textColor="@color/purple_200"
+                    android:textSize="24sp"
+                    android:layout_margin="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/large_text" />
+                    android:text="@string/rule_text" />
             </LinearLayout>
         </ScrollView>
 
